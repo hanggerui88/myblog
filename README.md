@@ -1,0 +1,2 @@
+# myblog
+python django
