@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>register</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/bootstrap-4.2.1.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <link rel="stylesheet" href="/static/css/style.default.css" id="theme-stylesheet">
+</head>
+
+<body>
+<div class="page login-page">
+    <div class="container d-flex align-items-center">
+        <div class="form-holder has-shadow">
+            <div class="row">
+                <!-- Logo & Information Panel-->
+                <div class="col-lg-6">
+                    <div class="info d-flex align-items-center">
+                        <div class="content">
+                            <div class="logo">
+                                <h1>欢迎注册</h1>
+                            </div>
+                            <p>sinead·django·blog</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Form Panel    -->
+                <div class="col-lg-6 bg-white">
+                    <div class="form d-flex align-items-center">
+                        <div class="content">
+                            <form method="post" action="{% url 'register' %}" class="form-validate" id="registerForm">
+                                <!-- 邮箱号 -->
+                                <div class="form-group">
+                                    <input id="register-email" class="input-material" type="email"
+                                           name="registerEmail" value="{{ register_form.registerEmail.value }}"
+                                           placeholder="请输入邮箱号" required>
+                                    <div class="invalid-feedback">
+                                        请输入有效的邮箱地址
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <input id="register-sms-code" class="input-material" style="width: 50%;"
+                                           value="{{ register_form.registerSmsCode.value }}"
+                                           type="text" name="registerSmsCode" placeholder="请输入邮箱短信验证码" required>
+                                    <div class="input-group ">
+                                        <button type="button" class="btn btn-primary sendCode" id="jsSendCode"
+                                                style="margin-left: 62% ; margin-top: -10%">发送验证码
+                                        </button>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        请输入邮箱短信验证码
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input id="register-username" class="input-material" type="text"
+                                           value="{{ register_form.registerUsername.value }}"
+                                           name="registerUsername" placeholder="请输入用户名" required minlength="2"
+                                           maxlength="10">
+                                    <div class="invalid-feedback">
+                                        用户名必须在2~10位之间
+                                    </div>
+                                </div>
+                                <!-- 密码 -->
+                                <div class="form-group">
+                                    <input id="register-password" class="input-material" type="password"
+                                           value="{{ register_form.registerPassword.value }}"
+                                           name="registerPassword" placeholder="请输入密码" required minlength="6"
+                                           maxlength="10">
+                                    <div class="invalid-feedback">
+                                        密码必须在6~10位之间
+                                    </div>
+                                </div>
+
+                                <!-- 确认密码 -->
+                                <div class="form-group">
+                                    <input id="register-passwords" class="input-material" type="password"
+                                           value="{{ register_form.registerPasswords.value }}"
+                                           name="registerPasswords" placeholder="确认密码" required minlength="6"
+                                           maxlength="10">
+                                    <div class="invalid-feedback" id="password-match-feedback">
+                                        两次密码必须相同 且在6~10位之间
+                                    </div>
+                                </div>
+                                {% if register_form.errors %}
+                                    {% for field, error_list in register_form.errors.items %}
+                                        {% for error in error_list %}
+                                            <div class="alert alert-danger">
+                                                {{ error }}</div>
+                                        {% endfor %}
+                                    {% endfor %}
+                                {% endif %}
+
+                                {% if msg %}
+                                    <div class="alert alert-danger">{{ msg }}</div>
+                                {% endif %}
+                                <!-- 注册按钮 -->
+                                <div class="form-group">
+                                    <button id="regbtn" type="submit" name="registerSubmit" class="btn btn-primary">注册
+                                    </button>
+                                </div>
+
+                                {% csrf_token %}
+                            </form>
+                            <small>已有账号?</small><a href={% url 'login' %} class="signup">&nbsp;登录</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- JavaScript files-->
+<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="https://www.jq22.com/jquery/bootstrap-4.2.1.js"></script>
+<script src="/static/js/register.js"></script>
+<script>
+
+</script>
+
+</body>
+</html>

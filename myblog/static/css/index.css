@@ -1,0 +1,143 @@
+
+header {
+    background-image: url('/static/pic/logo.png');
+    background-size: cover; /* 图片铺满整个<header>，可能会裁剪部分图片 */
+    background-position: center center; /* 图片居中 */
+    height: 200px;
+    width: auto;
+    text-align: center; /* 文字居中 */
+    padding: 50px 0; /* 调整内边距 */
+}
+
+main {
+    display: flex;
+}
+
+aside {
+    background-color: #eddfdf;
+    padding: 10px;
+}
+
+section {
+    background-color: #efe1e0;
+    padding: 10px;
+    height: 180px;
+    margin-top: -80px; /* 向上移动 20 像素 */
+    margin-bottom: 20px; /* 根据需要调整间距 */
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+}
+
+.post-image {
+    width: 200px; /* Set fixed width */
+    height: 150px; /* Set fixed height */
+    overflow: hidden; /* Hide any overflow */
+    position: relative; /* Position relative to contain the image */
+    margin-left: 505px; /* Space between content and image */
+    margin-top: -110px; /* Adjust positioning as needed */
+}
+
+.post-image img {
+    width: 100%; /* Scale image to container width */
+    height: 100%; /* Scale image to container height */
+    object-fit: cover; /* Maintain aspect ratio and cover container */
+    display: block; /* Remove any space below the image */
+}
+
+@media (max-width: 1200px) {
+    .post-image {
+        display: none;
+    }
+}
+
+footer {
+    padding: 10px;
+    text-align: center;
+    margin-top: 50px; /* 向下移动50像素 */
+}
+
+.pageturn {
+    clear: both;
+    height: 30px;
+    margin: 50px auto;
+    display: table;
+    text-align: center;
+}
+
+.pageturn .pagelist {
+    display: table-cell;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+.pageturn li {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 10px;
+    float: left;
+    text-align: center;
+}
+
+.pageturn li:first-child {
+    margin-left: 0;
+}
+
+.pageturn li:hover a, .pageturn .active a {
+    background: #e8c0c0;
+    color: #fff;
+    border-color: #eaeaea;
+}
+
+.pageturn a {
+    border: 1px solid #eaeaea;
+    display: block;
+    height: 28px;
+    color: #6c6c6c;
+}
+
+.pageturn .long {
+    width: 100px;
+}
+
+.pageturn .none a {
+    border: 0;
+}
+
+.section-container {
+    width: 100%;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-top: 20px;
+    border-radius: 8px; /* 添加圆角边框 */
+}
+
+.section-container:hover {
+    transform: scale(1.01);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.aside-container {
+    position: relative;
+    margin-top: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 8px; /* 添加圆角边框 */
+
+
+}
+
+.aside-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin: 5px 0; /* 调整间距 */
+}
+

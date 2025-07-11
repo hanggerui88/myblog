@@ -1,0 +1,4 @@
+django~=4.2.15
+redis~=5.0.1
+requests~=2.32.0
+django-pure-pagination

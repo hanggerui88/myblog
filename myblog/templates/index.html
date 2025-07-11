@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link href="{% static  'css/index.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    {% for blog in posts.object_list %}
+        <section class="col-sm-8 section-container">
+            <article class="post">
+
+                <h3><a href="{% url 'to_detail' article_id=blog.id %}">{{ blog.title }}</a></h3>
+
+                <p class="post-meta">发布时间: {{ blog.created_at }}</p>
+                <p>{{ blog.simple_content }}。</p>
+                <div class="post-image">
+                    <a href="{% url 'upload_blog_image' blog_id=blog.id %}">
+                        <img src="{{ blog.image.url }}" alt="博客封面图片"></a>
+                </div>
+            </article>
+        </section>
+    {% endfor %}
+{% endblock %}
+
+{% block side %}
+    <div class="col-sm-1" style="width: 10px;"></div>
+    <aside class="col-sm-3 aside-container">
+        <h2>热门文章</h2>
+        <ul class="list-unstyled">
+            {% for blog in hot_post %}
+                <li><a href="{% url 'to_detail' article_id=blog.id %}">{{ blog.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </aside>
+{% endblock %}
+
+{% block page %}
+    <div class="pageturn">
+        <ul class="pagelist">
+            {% if posts.has_previous %}
+                <li class="long"><a href="?{{ posts.previous_page_number.querystring }}">上一页</a></li>
+            {% endif %}
+
+            {% for page in posts.pages %}
+                {% if page %}
+
+                    {% if page == posts.number %}
+                        <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                    {% else %}
+                        <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
+                    {% endif %}
+                {% else %}
+                    <li class="none">.. .</li>
+                {% endif %}
+            {% endfor %}
+            {% if posts.has_next %}
+                <li class="long"><a href="?{{ posts.next_page_number.querystring }}">下一页</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <footer>
+        <p>版权所有，未经书面授权禁止使用 Copyright©sinead·django·blog All Rights Reserved (2024-forever)</p>
+    </footer>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

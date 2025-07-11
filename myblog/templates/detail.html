@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link href="{% static  'css/course-comment.css' %}" rel="stylesheet">
+    <link href="{% static  'css/detail.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <section class="col-sm-8 section-container">
+        <article class="blog-post">
+            <h2 class="post-title">{{ curr_article.title }}</h2>
+            <p class="post-meta">作者: {{ curr_article.author }} | 发布日期: {{ curr_article.created_at }} |
+                类别: {{ curr_article.categories }}</p>
+            <div class="post-content">
+                {{ curr_article.content }}
+            </div>
+        </article>
+    </section>
+
+{% endblock %}
+
+{% block side %}
+    <div class="col-sm-1" style="width: 10px;"></div>
+
+    <aside class="col-sm-3 aside-container">
+        <div class="personal-info">
+            <img src="{{ curr_article.author.image.url }}" alt="Profile Picture" class="profile-pic">
+            <h2 class="user-name">{{ curr_article.author.username }}</h2>
+            <p class="user-email">{{ curr_article.author.email }}</p>
+        </div>
+        <div class="btn pub-btn" id="jsAuthorBtn">
+            {% if has_fav_post %}取消点赞作者{% else %}点赞作者{% endif %}
+        </div>
+        <div class="btn pub-btn" id="jsPostBtn">
+            {% if has_fav_author %}取消点赞文章{% else %}点赞文章{% endif %}
+        </div>
+
+    </aside>
+{% endblock %}
+
+{% block page %}
+    <nav aria-label="...">
+        <ul class="pager" style="margin-left: -290px">
+            <li><a href="/post/{{ previous_article.id }}">上一篇：{{ previous_article.title }}</a></li>
+            <li><a href="/post/{{ next_article.id }}">下一篇：{{ next_article.title }}</a></li>
+        </ul>
+    </nav>
+{% endblock %}
+{% block footer %}
+    <div class="container " style="margin-left: 150px">
+
+
+        <div class="content">
+            <div class="mod-tab-menu"></div>
+            <!--发布评论-->
+            <div id="js-pub-container" class="issques clearfix js-form">
+                <form enctype="multipart/form-data" autocomplete="off" method="post"
+                      action="{% url 'comment' curr_article_id=curr_article.id %}">
+                    <div class="wgt-ipt-wrap pub-editor-wrap" id="js-pl-input-fake">
+                        <textarea id="js-pl-textarea" name="content" placeholder="扯淡、吐槽、表扬、鼓励……想说啥就说啥！"></textarea>
+                    </div>
+
+                    <input type="submit" id="js-pl-submit" class="pub-btn" value="发表评论">
+
+                    {% csrf_token %}
+                </form>
+                <p class="global-errortip js-global-error"></p>
+            </div>
+
+
+            <div id="course_note">
+                <ul class="mod-post" id="comment-list">
+                    {% for comment in comments %}
+                        <li class="post-row">
+                            <div class="media">
+                                <span target="_blank"><img src='{{ comment.author.image.url }}' width='40' height='40'/></span>
+                            </div>
+                            <div class="bd">
+                                <div class="tit">
+                                    <span target="_blank">{{ comment.author.username }}</span>
+                                </div>
+                                <p class="cnt">{{ comment.content }}</p>
+                                <div class="footer clearfix">
+                                    <span title="创建时间" class="l timeago">时间：{{ comment.created_at }}</span>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="container " style="margin-left: 150px;height: 80px;"></div>
+
+{% endblock %}
+{% block js %}
+    <script src="{% static  'js/message2.js' %}"></script>
+    <script>
+        function add_fav(current_elem, fav_id, fav_type) {
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: "{% url 'fav' %}",
+                data: {'fav_id': fav_id, 'fav_type': fav_type},
+                async: true,
+                beforeSend: function (xhr, settings) {
+                    xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+                },
+                success: function (data) {
+                    if (data.status == 'fail') {
+                        if (data.msg == '用户未登录') {
+                            window.location.href = "{% url 'login' %}";
+                        } else {
+                            alert(data.msg)
+                        }
+                    } else if (data.status == 'success') {
+                        current_elem.text(data.msg)
+                    }
+                },
+            });
+        }
+
+        $(document).ready(function () {
+            $('#jsAuthorBtn').on('click', function () {
+                add_fav($(this), {{ curr_article.author.id }}, 2);
+            });
+        });
+
+        $(document).ready(function () {
+            $('#jsPostBtn').on('click', function () {
+                add_fav($(this), {{ curr_article.id }}, 1);
+            });
+        });
+    </script>
+{% endblock %}

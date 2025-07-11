@@ -1,0 +1,152 @@
+
+header {
+    background-image: url('/static/pic/logo.png');
+    background-size: cover; /* 图片铺满整个<header>，可能会裁剪部分图片 */
+    background-position: center center; /* 图片居中 */
+    height: 200px;
+    width: auto;
+    text-align: center; /* 文字居中 */
+    padding: 50px 0; /* 调整内边距 */
+}
+
+main {
+    display: flex;
+}
+
+aside {
+    background-color: #eddfdf;
+    padding: 10px;
+}
+
+
+footer {
+    padding: 10px;
+    text-align: center;
+    margin-top: 50px; /* 向下移动50像素 */
+}
+
+.pageturn {
+    clear: both;
+    height: 30px;
+    margin: 50px auto;
+    display: table;
+    text-align: center;
+}
+
+.pageturn .pagelist {
+    display: table-cell;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+.pageturn li {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 10px;
+    float: left;
+    text-align: center;
+}
+
+.pageturn li:first-child {
+    margin-left: 0;
+}
+
+.pageturn li:hover a, .pageturn .active a {
+    background: #e8c0c0;
+    color: #fff;
+    border-color: #eaeaea;
+}
+
+.pageturn a {
+    border: 1px solid #eaeaea;
+    display: block;
+    height: 28px;
+    color: #6c6c6c;
+}
+
+.pageturn .long {
+    width: 100px;
+}
+
+.pageturn .none a {
+    border: 0;
+}
+
+
+.section-container {
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 8px; /* 添加圆角边框 */
+    padding: 20px;
+    background-color: #efe1e0;
+    box-sizing: border-box;
+    /* 这里没有设置固定高度，容器会根据内容自动调整高度 */
+}
+
+.section-container::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.aside-container {
+    position: relative;
+    margin-top: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 8px; /* 添加圆角边框 */
+
+
+}
+
+.aside-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+.personal-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.user-name {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.user-email {
+    color: #888;
+}
+
+.personal-nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.personal-nav li {
+    margin: 10px 0;
+}
+
+.personal-nav a {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin: 5px 0; /* 调整间距 */
+}

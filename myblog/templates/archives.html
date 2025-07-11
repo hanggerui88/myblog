@@ -1,0 +1,101 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+{% block css %}
+    <link href="{% static  'css/archives.css' %}" rel="stylesheet">
+    <link href="{% static  'css/style.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="left">
+            <div class="listoptions">
+                <ul>
+                    <li>
+                        <h2>文章种类</h2>
+                        <div class="cont">
+                            <a href="?category=&tag={{ tag_id }}"><span
+                                    class="{% if category_id == '' %}active2{% endif %}">全部</span></a>
+                            {% for category in all_categories %}
+                                <a href="?category={{ category.id }}&tag={{ tag_id }}"><span
+                                        class="{% if category_id == category.id %}active2{% endif %}">{{ category.name }}</span></a>
+                            {% endfor %}
+                        </div>
+                    </li>
+
+                    <li>
+                        <h2>文章标签</h2>
+                        <div class="cont">
+                            <a href="?category={{ category_id }}&tag="><span
+                                    class="{% if tag_id == '' %}active2{% endif %}">全部</span></a>
+                            {% for tag in all_tags %}
+                                <a href="?category={{ category_id }}&tag={{ tag.id }}"><span
+                                        class="{% if tag_id == tag.id %}active2{% endif %}">{{ tag.name }}</span></a>
+                            {% endfor %}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="butler_list company list">
+                <div class="layout">
+                    <div class="head">
+                        <ul class="tab_header">
+                            <li class="{% if sort == '' %}active2{% endif %}"><a
+                                    href="?category={{ category_id }}&tag={{ tag_id }}&sort=">全部</a></li>
+                            <li class="{% if sort == 'likes' %}active2{% endif %}"><a
+                                    href="?category={{ category_id }}&tag={{ tag_id }}&sort=likes">点赞量 &#8595;</a></li>
+                            <li class="{% if sort == 'id' %}active2{% endif %}"><a
+                                    href="?category={{ category_id }}&tag={{ tag_id }}&sort=id">创建时间 &#8595;</a></li>
+                        </ul>
+                    </div>
+
+                    {% for blog in posts.object_list %}
+                        <section class="col-sm-8 section-container">
+                            <article class="post">
+
+                                <h3><a href="{% url 'user_detail' article_id=blog.id %}">{{ blog.title }}</a></h3>
+
+                                <p class="post-meta">发布时间: {{ blog.created_at }}</p>
+                                <p>{{ blog.simple_content }}。</p>
+                                <div class="post-image">
+                                    <a href="{% url 'upload_blog_image' blog_id=blog.id %}">
+                                        <img src="{{ blog.image.url }}" alt="博客封面图片"></a>
+                                </div>
+                            </article>
+                        </section>
+                    {% endfor %}
+
+                    <div class="pageturn">
+                        <ul class="pagelist">
+                            {% if posts.has_previous %}
+                                <li class="long"><a href="?{{ posts.previous_page_number.querystring }}">上一页</a></li>
+                            {% endif %}
+
+                            {% for page in posts.pages %}
+                                {% if page %}
+
+                                    {% if page == posts.number %}
+                                        <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                                    {% else %}
+                                        <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
+                                    {% endif %}
+                                {% else %}
+                                    <li class="none">.. .</li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if posts.has_next %}
+                                <li class="long"><a href="?{{ posts.next_page_number.querystring }}">下一页</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+{% endblock %}
+
+
+{% block js %}
+    <script src="{% static  'js/archives.js' %}"></script>
+{% endblock %}

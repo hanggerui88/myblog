@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>sinead·django·blog</title>
+    <link href="{% static  'css/bootstrap.css' %}" rel="stylesheet">
+
+    {% block css %}
+    {% endblock %}
+</head>
+
+<body>
+<header>
+    <h1 style="color: #f7c398;margin-top: 60px;">sinead·django·blog</h1>
+</header>
+<nav class="navbar navbar-default">
+
+    <div class="container">
+
+        <div class="navbar-header">
+            <button aria-expanded="false" class="navbar-toggle collapsed" data-target="#bs-example-navbar-collapse-1"
+                    data-toggle="collapse" type="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="{% url 'index' %}">首页</a></li>
+                <li><a href="{% url 'archives' %}">归档</a></li>
+            </ul>
+            <!--根据url里面的name自动改  url 'login'  -->
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown"
+                       href="#" role="button">个人中心 <span class="caret"></span></a>
+
+                    <ul class="dropdown-menu">
+                        <!-- 已经登陆，is_authenticated是true-->
+                        {% if request.user.is_authenticated %}
+                            <li>
+                                <a href="{% url 'upload_user_image' %}">
+                                    <img src="{{ user.image.url }}" alt="Profile Picture" class="profile-pic2">
+                                    {{ user.username }}</a>
+                            </li>
+                            <li><a href="{% url 'writes' %}">去写文章</a></li>
+                            <li class="divider" role="separator"></li>
+                            <li><a href="{% url 'logout' %}">登出</a></li>
+                        {% else %}
+                            <li><a href="{% url 'login' %}">登陆</a></li>
+                            <li><a href="{% url 'register' %}">注册</a></li>
+                        {% endif %}
+                    </ul>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<main>
+    <div class="container ">
+        {% block content %}
+        {% endblock %}
+
+    </div>
+</main>
+
+<script src='{% static  'js/jquery.min.js' %}'></script>
+<script src="{% static  'js/bootstrap.min.js' %}"></script>
+
+{% block js %}
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+
+header {
+    background-image: url('/static/pic/logo.png');
+    background-size: cover; /* 图片铺满整个<header>，可能会裁剪部分图片 */
+    background-position: center center; /* 图片居中 */
+    height: 200px;
+    width: auto;
+    text-align: center; /* 文字居中 */
+    padding: 50px 0; /* 调整内边距 */
+}
+
+
+footer {
+    padding: 10px;
+    text-align: center;
+    margin-top: 50px; /* 向下移动50像素 */
+}
+
+.editor-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.editor-container h1 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.editor-container input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.editor-container textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    height: 300px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    resize: vertical;
+}
+
+.editor-container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #eeb2b2;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.editor-container button:hover {
+    background-color: #eeb2b2;
+}

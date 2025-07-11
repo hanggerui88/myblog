@@ -1,0 +1,333 @@
+
+header {
+    background-image: url('/static/pic/logo.png');
+    background-size: cover; /* 图片铺满整个<header>，可能会裁剪部分图片 */
+    background-position: center center; /* 图片居中 */
+    height: 200px;
+    width: auto;
+    text-align: center; /* 文字居中 */
+    padding: 50px 0; /* 调整内边距 */
+}
+
+main {
+    display: flex;
+}
+
+
+footer {
+    padding: 10px;
+    text-align: center;
+    margin-top: 50px; /* 向下移动50像素 */
+}
+
+.pageturn {
+    clear: both;
+    height: 30px;
+    margin: 50px auto;
+    display: table;
+    text-align: center;
+}
+
+.pageturn .pagelist {
+    display: table-cell;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+.pageturn li {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 10px;
+    float: left;
+    text-align: center;
+}
+
+.pageturn li:first-child {
+    margin-left: 0;
+}
+
+.pageturn li:hover a, .pageturn .active a {
+    background: #e8c0c0;
+    color: #fff;
+    border-color: #eaeaea;
+}
+
+.pageturn a {
+    border: 1px solid #eaeaea;
+    display: block;
+    height: 28px;
+    color: #6c6c6c;
+}
+
+.pageturn .long {
+    width: 100px;
+}
+
+.pageturn .none a {
+    border: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin: 5px 0;
+}
+
+/* 调整间距 */
+
+
+.listoptions {
+    border: 1px solid #dcdcdc;
+    min-height: 50px;
+}
+
+.listoptions li {
+    min-height: 50px;
+    width: 100%;
+    line-height: 50px;
+    color: #333;
+    position: relative;
+}
+
+.listoptions h2 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 130px;
+    background: #f6f6f6;
+    color: #808080;
+    text-align: center;
+}
+
+.listoptions .more {
+    position: absolute;
+    right: 10px;
+    background: #f6f6f6;
+    color: #808080;
+    border: 1px solid #dcdcdc;
+    height: 30px;
+    top: 10px;
+    line-height: 30px;
+    width: 50px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.listoptions .more:hover {
+    background: #717171;
+    color: #fff;
+    border-color: #717171;
+}
+
+.listoptions span {
+    margin: 0 12px;
+    cursor: pointer;
+    color: #9F9F9F;
+}
+
+.listoptions span:hover, .listoptions span.active {
+    color: #717171;
+}
+
+.listoptions .cont {
+    width: 950px;
+    margin-left: 140px;
+    height: 50px;
+    overflow: hidden;
+}
+
+.list {
+    height: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    min-height: 200px;
+    overflow: hidden;
+    clear: both;
+    position: relative;
+}
+
+.list .layout {
+    border: 1px solid #eaeaea;
+}
+
+.list .layout .head, .personal_des .head {
+    border-bottom: 1px solid #eaeaea;
+    background: #f8f8f8;
+    color: #333;
+    height: 50px;
+    line-height: 50px;
+    text-indent: 20px;
+    font-size: 14px;
+}
+
+.list .left {
+    width: 900px;
+    float: left;
+}
+
+.list .right {
+    width: 280px;
+    float: right;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.list .right .more {
+    float: right;
+    color: #717171;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.section-container {
+    width: 100%;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-top: 40px;
+    border-radius: 8px; /* 添加圆角边框 */
+    margin-left: 180px;
+    background-color: #efe1e0;
+    padding: 10px;
+    height: 180px;
+    width: 750px;
+    margin-bottom: 20px; /* 根据需要调整间距 */
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+}
+
+.section-container:hover {
+    transform: scale(1.01);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+.post-image {
+    width: 200px; /* Set fixed width */
+    height: 150px; /* Set fixed height */
+    overflow: hidden; /* Hide any overflow */
+    position: relative; /* Position relative to contain the image */
+    margin-left: 505px; /* Space between content and image */
+    margin-top: -110px; /* Adjust positioning as needed */
+}
+
+.post-image img {
+    width: 100%; /* Scale image to container width */
+    height: 100%; /* Scale image to container height */
+    object-fit: cover; /* Maintain aspect ratio and cover container */
+    display: block; /* Remove any space below the image */
+}
+
+@media (max-width: 1200px) {
+    .post-image {
+        display: none;
+    }
+}
+
+.tab_header {
+    height: 50px;
+    line-height: 50px;
+    text-indent: 0;
+}
+
+.tab_header li {
+    height: 48px;
+    float: left;
+    text-align: center;
+    display: inline-block;
+    width: auto;
+    text-indent: 0;
+    margin: 0 20px;
+    padding: 0 2px;
+    cursor: pointer;
+}
+
+.tab_header a {
+    color: #333;
+    display: inline-block;
+    height: 48px;
+    line-height: 48px;
+    width: auto;
+}
+
+.tab_header .active {
+    border-bottom: 2px solid #717171;
+    color: #717171;
+    font-weight: bold;
+}
+
+
+.list span {
+    color: #9f9f9f;
+}
+
+.listoptions {
+    border: 1px solid #dcdcdc;
+    min-height: 50px;
+}
+
+.listoptions li {
+    min-height: 50px;
+    width: 100%;
+    line-height: 50px;
+    color: #333;
+    position: relative;
+}
+
+.listoptions h2 {
+    position: absolute;
+    margin-top: 10px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 130px;
+    background: #ffffff;
+    color: #808080;
+    text-align: center;
+}
+
+.listoptions .more {
+    position: absolute;
+    right: 10px;
+    background: #f6f6f6;
+    color: #808080;
+    border: 1px solid #dcdcdc;
+    height: 30px;
+    top: 10px;
+    line-height: 30px;
+    width: 50px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.listoptions .more:hover {
+    background: #717171;
+    color: #fff;
+    border-color: #717171;
+}
+
+.listoptions span {
+    margin: 0 12px;
+    cursor: pointer;
+    color: #9F9F9F;
+}
+
+.listoptions span:hover, .listoptions span.active {
+    color: #717171;
+}
+
+.listoptions .cont {
+    width: 950px;
+    margin-left: 140px;
+    height: 50px;
+    overflow: hidden;
+}
+
+.active2 {
+    color: #eeb2b2 !important;
+}
